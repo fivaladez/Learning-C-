@@ -37,11 +37,11 @@ int main () {
 
    /* char *strchr(const char *str, int c)
    Returns a pointer to the first occurrence of character ch in string s1. */
-   cout << "strchr( str1, ch ): " <<  strchr( str1, 'H' ) << endl;
+   cout << "strchr( str1, ch ): " <<  strchr( str1, 'l' ) << endl;
 
    /* char *strstr(const char *s1, const char *s2);
    Returns a pointer to the first occurrence of string s2 in string s1.  */
-   cout << "strstr( str1, str2 ): " << strstr( str1, "World" ) << endl;
-   
+   cout << "strstr( str1, str2 ): " << strstr( str1, "ld" ) << endl;
+
    return 0;
 }

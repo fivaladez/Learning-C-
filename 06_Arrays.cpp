@@ -11,9 +11,10 @@ void myFunction3( int param[], int size );
 
 int * myFunction();
 
-int main () {
+int main ()
+{
 
-    int n[ 10 ] = {0}; // n is an array of 10 integers
+    int n[ 10 ] = {1,2,3,4,5,6,7,8,9,10}; // n is an array of 10 integers
 
     // an array with 5 rows and 2 columns.
     int a[5][2] = {
@@ -33,7 +34,7 @@ int main () {
    }//setw() it is for spaces
 
     // output each array element's value
-    for ( i = 0; i < 5; i++ )
+    for ( i = 0; i < 5; i++ ){
        for ( j = 0; j < 2; j++ ) {
 
           cout << "a[" << i << "][" << j << "]: ";
