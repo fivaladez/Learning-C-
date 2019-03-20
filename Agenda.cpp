@@ -38,6 +38,7 @@ int main(){
 
         cout << "    Introduce the option desired: " << endl;
         cin >> control;
+        cin.ignore();
 
         switch(control)
         {
@@ -48,9 +49,9 @@ int main(){
                 break;
             case 3: eliminate_contact();
                 break;
-            case 4: //erase_agenda();
+            case 4: erase_agenda();
                 break;
-            case 5: //exit(0);
+            case 5: throw std::exception();//End the program
                 break;
             default: cout << "\n\n" << control << "is not an option. Try again." << endl;
                 break;
@@ -68,14 +69,12 @@ void add_contact(void)
     cout << "\n\n    ===== Add a contact =====\n\n";
 
     cout << "\n    Introuce the first and last name: ";
-    cin.ignore();
 	getline( cin, agenda.complete_name );
 
     cout << "\n    Introuce the cellphone number: ";
-    cin.ignore();
 	getline( cin, agenda.cellphone_number );
 
-    fp.open(file_path, fstream::out);
+    fp.open(file_path, fstream::out | fstream::app);
     /* NOTE: use of .is_open() it is ONLY for ifstream or ofstrem, NOT for fstream */
 
     if( fp )/* File succesfully open */
@@ -112,7 +111,6 @@ void lookfor_contact(void)
     cout << "\n\n    ===== Loof for name =====\n\n";
 
     cout << "\n    Introuce the first and last name to look for: ";
-    cin.ignore();
     getline( cin, look_for_name );
 
     fp.open(file_path, fstream::in );
@@ -120,10 +118,8 @@ void lookfor_contact(void)
     {
         string line = "";
         unsigned int control_var = 0;
-
         while ( getline ( fp, line ) )
         {
-            cin.ignore();
             size_t found = line.find(look_for_name);
             if( found != string::npos )
     		{
@@ -159,7 +155,6 @@ void eliminate_contact(void)
     cout << "\n\n    ===== Eliminate contact =====\n\n";
 
     cout << "\n    Introuce the first and last name to eliminate: ";
-    cin.ignore();
     getline( cin, name_to_eliminate );
 
     fp.open(file_path, fstream::in);
@@ -171,7 +166,6 @@ void eliminate_contact(void)
         unsigned int control_var = 0;
         while ( getline ( fp, line ) )
         {
-            //cin.ignore();
             size_t found = line.find(name_to_eliminate);
             if( found != string::npos )
     		{
@@ -207,4 +201,11 @@ void eliminate_contact(void)
 		throw std::exception();//End the program
     }
 
+}
+
+void erase_agenda(void)
+{
+    remove( file_path.c_str()  );
+    agenda.complete_name = "";
+    agenda.cellphone_number = "";
 }
